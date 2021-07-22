@@ -11,8 +11,8 @@ class Hand {
     this.setValue();
   }
 
-  addCard(card) {
-    this.cards.push(card);
+  addCards(cards) {
+    this.cards.push(...cards);
     this.setValue();
   }
 
