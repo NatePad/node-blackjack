@@ -1,3 +1,5 @@
+"use strict";
+
 class Card {
   constructor(suit, face) {
     this.suit = suit;

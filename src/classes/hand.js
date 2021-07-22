@@ -1,3 +1,5 @@
+"use strict";
+
 class Hand {
   constructor(name, cards) {
     this.name = name;

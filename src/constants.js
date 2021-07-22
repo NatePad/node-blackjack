@@ -1,3 +1,5 @@
+"use strict";
+
 const SUITS = ["♠", "♥", "♦", "♣"];
 const FACES = [
   "A",

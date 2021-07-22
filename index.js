@@ -1,3 +1,5 @@
+"use strict";
+
 const Deck = require("./src/classes/deck");
 const Hand = require("./src/classes/hand");
 const { getHitOrStay, getPlayAgain } = require("./src/inquirerQuestions");

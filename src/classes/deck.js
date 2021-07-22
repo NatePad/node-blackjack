@@ -1,3 +1,5 @@
+"use strict";
+
 const Card = require("./card");
 const { SUITS, FACES } = require("../constants");
 
