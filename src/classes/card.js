@@ -1,7 +1,7 @@
 class Card {
   constructor(suit, face) {
-    this.face = suit;
-    this.suit = face;
+    this.suit = suit;
+    this.face = face;
 
     // CONVERT THE FACE FROM
     // A STRING TO A NUMBER

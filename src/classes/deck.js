@@ -32,8 +32,15 @@ class Deck {
     }
   }
 
-  dealCard() {
-    return this.cards.pop();
+  draw(count) {
+    const cards = [];
+
+    for (let i = 0; i < count; i++) {
+      const card = this.cards.pop();
+      cards.push(card);
+    }
+
+    return cards;
   }
 }
 
