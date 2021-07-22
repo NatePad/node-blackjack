@@ -15,7 +15,7 @@ const getYesOrNo = async (message) => {
     },
   ]);
 
-  return results.yesOrNo === "Yes" ? true : false;
+  return results.yesOrNo === "Yes";
 };
 
 module.exports = getYesOrNo;
