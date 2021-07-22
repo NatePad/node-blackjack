@@ -31,6 +31,10 @@ class Deck {
       this.cards[randomIndex] = tempCard;
     }
   }
+
+  dealCard() {
+    return this.cards.pop();
+  }
 }
 
 module.exports = Deck;
