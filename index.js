@@ -3,7 +3,7 @@
 const Deck = require("./src/classes/deck");
 const Hand = require("./src/classes/hand");
 const getYesOrNo = require("./src/inquirerQuestions");
-const { HIT_OR_STAND, PLAY_AGAIN } = require("./src/constants");
+const { HIT_OR_STAND, LOGO, PLAY_AGAIN } = require("./src/constants");
 
 const players = ["Dealer", "Player"];
 const hands = [];
@@ -14,7 +14,7 @@ let ties = 0;
 let playAgain = true;
 
 const init = async () => {
-  console.log("WELCOME TO BLACKJACK!");
+  console.log(LOGO);
   const deck = new Deck();
 
   while (playAgain) {
