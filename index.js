@@ -2,7 +2,8 @@
 
 const Deck = require("./src/classes/deck");
 const Hand = require("./src/classes/hand");
-const { getHitOrStay, getPlayAgain } = require("./src/inquirerQuestions");
+const getYesOrNo = require("./src/inquirerQuestions");
+const { HIT_OR_STAND, PLAY_AGAIN } = require("./src/constants");
 
 const players = ["Dealer", "Player"];
 const hands = [];
@@ -33,9 +34,8 @@ const init = async () => {
       hand.printCards();
     }
 
-    const hitOrStay = await getHitOrStay();
-
-    playAgain = await getPlayAgain();
+    const hitOrStay = await getYesOrNo(HIT_OR_STAND);
+    playAgain = await getYesOrNo(PLAY_AGAIN);
   }
 };
 
