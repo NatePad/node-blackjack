@@ -7,11 +7,10 @@ let ties = 0;
 let playAgain = true;
 
 const init = async () => {
+  const deck = new Deck();
   while (playAgain) {
-    const myDeck = new Deck();
-    myDeck.build();
-    console.log(myDeck);
-    console.log(myDeck.cards.length);
+    console.log(deck);
+    console.log(deck.cards.length);
     playAgain = await getPlayAgain();
   }
 };

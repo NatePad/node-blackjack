@@ -2,12 +2,10 @@ const Card = require("./card");
 const { SUITS, FACES } = require("../constants");
 
 class Deck {
-  // THERE IS NO CONSTRUCTOR
-  // INSTEAD, WE CREATE A BUILD
-  // PROTOTYPE METHOD THAT WILL
-  // BE USED MULTIPLE TIMES
-  // WHENEVER THE DECK NEEDS TO BE
-  // REBUILT AND SHUFFLED
+  constructor() {
+    this.build();
+  }
+
   build() {
     this.cards = [];
 
