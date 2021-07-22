@@ -2,20 +2,28 @@
 
 const inquirer = require("inquirer");
 
-const getYesOrNo = async (message) => {
+const getPlayAgain = async () => {
   const results = await inquirer.prompt([
     {
       type: "list",
-      name: "yesOrNo",
-      // IF THE KEY AND VALUE HAVE THE SAME VARIABLE NAME,
-      // THEN WE DON'T HAVE TO TYPE OUT THE VALUE:
-      // message: message
-      message,
+      name: "playAgain",
+      message: "Do you want to play another round?",
       choices: ["Yes", "No"],
     },
   ]);
-
-  return results.yesOrNo === "Yes";
+  return results.playAgain === "Yes";
 };
 
-module.exports = getYesOrNo;
+const getHitOrStand = async () => {
+  const results = await inquirer.prompt([
+    {
+      type: "list",
+      name: "hitOrStand",
+      message: "Do you want to hit or stand?",
+      choices: ["Hit", "Stand"],
+    },
+  ]);
+  return results.hitOrStand === "Hit";
+};
+
+module.exports = { getPlayAgain, getHitOrStand };
