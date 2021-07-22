@@ -1,5 +1,3 @@
-const Card = require("./card");
-
 class Hand {
   constructor(name, cards) {
     this.name = name;
@@ -13,15 +11,14 @@ class Hand {
       console.log(`${this.name}'s Cards:`);
     }
 
+    let i = 0;
     if (this.name === "Dealer") {
       console.log("1 face down card");
-      for (let i = 1; i < this.cards.length; i++) {
-        this.cards[i].printCard();
-      }
-    } else {
-      for (const card of this.cards) {
-        card.printCard();
-      }
+      i = 1;
+    }
+
+    for (i; i < this.cards.length; i++) {
+      this.cards[i].printCard();
     }
   }
 }
