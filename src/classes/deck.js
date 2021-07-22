@@ -1,7 +1,13 @@
 const Card = require("./card");
-const { SUITS, FACES } = require("./constants");
+const { SUITS, FACES } = require("../constants");
 
 class Deck {
+  // THERE IS NO CONSTRUCTOR
+  // INSTEAD, WE CREATE A BUILD
+  // PROTOTYPE METHOD THAT WILL
+  // BE USED MULTIPLE TIMES
+  // WHENEVER THE DECK NEEDS TO BE
+  // REBUILT AND SHUFFLED
   build() {
     this.cards = [];
 
@@ -11,15 +17,20 @@ class Deck {
         this.cards.push(card);
       }
     }
+
+    this.shuffle();
   }
 
   shuffle() {
-    this.cards;
-    let currentIndex = 0;
-    while (index < this.cards.length) {
-      currentIndex++;
+    let currentIndex = this.cards.length;
+
+    while (currentIndex > 0) {
       const randomIndex = Math.floor(Math.random() * currentIndex);
-      
+      currentIndex--;
+
+      const tempCard = this.cards[currentIndex];
+      this.cards[currentIndex] = this.cards[randomIndex];
+      this.cards[randomIndex] = tempCard;
     }
   }
 }

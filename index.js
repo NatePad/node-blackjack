@@ -1,4 +1,4 @@
-const Deck = require("./deck");
+const Deck = require("./src/classes/deck");
 
 let dealerWins = 0;
 let playerWins = 0;
@@ -7,7 +7,9 @@ let playAgain = true;
 
 const init = () => {
   const myDeck = new Deck();
-  myDeck.buildDeck();
+  myDeck.build();
+  console.log(myDeck);
+  console.log(myDeck.cards.length);
 };
 
 init();
