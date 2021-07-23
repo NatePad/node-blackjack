@@ -33,6 +33,10 @@ class Deck {
     console.log(FRESH_SHUFFLE);
   }
 
+  checkLength(rebuildAt) {
+    if (this.cards.length < rebuildAt) this.build();
+  }
+
   deal(count) {
     const cards = [];
     for (let i = 0; i < count; i++) {

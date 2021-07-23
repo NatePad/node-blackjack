@@ -89,9 +89,7 @@ const init = async () => {
     // EMPTY THE HANDS ARRAY FOR A NEW GAME
     hands.splice(0, hands.length);
 
-    if (deck.cards.length < 20) {
-      deck.build();
-    }
+    deck.checkLength(20);
 
     for (const player of PLAYERS) {
       const cards = deck.deal(2);
