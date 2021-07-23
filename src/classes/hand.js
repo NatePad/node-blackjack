@@ -63,7 +63,6 @@ class Hand {
     }
 
     if (isPlayerHand) {
-      // console.log("-------------------");
       console.log("Your hand value:", this.value);
     }
     console.log("===================");
