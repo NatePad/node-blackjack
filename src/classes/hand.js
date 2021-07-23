@@ -3,10 +3,10 @@
 const { PLAYERS } = require("../constants");
 
 class Hand {
-  constructor(name, cards, hit) {
+  constructor(name, cards) {
     this.player = name;
     this.cards = cards;
-    this.hit = hit;
+    this.hit = true;
 
     this.setValue();
   }

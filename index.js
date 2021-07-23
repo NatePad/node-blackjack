@@ -95,7 +95,7 @@ const init = async () => {
 
     for (const player of PLAYERS) {
       const cards = deck.deal(2);
-      const hand = new Hand(player, cards, true);
+      const hand = new Hand(player, cards);
       hands.push(hand);
     }
 
