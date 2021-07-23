@@ -8,7 +8,7 @@ const { BLACKJACK, FINAL_HANDS, LOGO, PLAYERS } = require("./src/constants");
 // **********************************************************
 // Hands are created from the PLAYERS names in the constants
 // file, making hands[PLAYERS.length] the dealer hand.
-// The dealer is last in the array becaujse all players finish their
+// The dealer is last in the array because all players finish their
 // hands before the dealer in casino Blackjack.
 // **********************************************************
 const hands = [];
@@ -121,7 +121,7 @@ const init = async () => {
           if (hand.getValue() < 17 && hands[0].getValue() <= BLACKJACK) {
             console.log("The dealer hits.");
             hand.addCards(deck.deal(1));
-            hand.printCards();
+            hand.printCards(true);
           } else {
             console.log("The dealer stands.");
             hand.setHit(false);

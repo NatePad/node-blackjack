@@ -64,10 +64,6 @@ class Hand {
 
   printCards(revealDealer) {
     const isPlayerHand = this.player === PLAYERS[0];
-    // IF IT'S THE DEALER'S HAND, WE SET i TO 1
-    // SO THAT WE DON'T SHOW THE DEALER'S FIRST CARD
-    // IN THE FOR LOOP BELOW
-    let i = 0;
 
     console.log("_______________________");
     if (isPlayerHand) {
@@ -76,7 +72,11 @@ class Hand {
       console.log(`${this.player}'s Cards:`);
     }
 
-    if (!revealDealer && !isPlayerHand) {
+    // IF IT'S THE DEALER'S HAND, WE SET i TO 1
+    // SO THAT WE DON'T SHOW THE DEALER'S FIRST CARD
+    // IN THE FOR LOOP BELOW
+    let i = 0;
+    if (!revealDealer && this.player === PLAYERS[PLAYERS.length - 1]) {
       i = 1;
       console.log("1 face down card");
     }
