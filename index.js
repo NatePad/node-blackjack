@@ -1,15 +1,14 @@
 "use strict";
 
-// **********************************************************
-// HANDS ARE CREATED FROM THE PLAYER NAMES ARRAY IN THE CONSTANTS
-// FILE, MAKING HANDS[0] THE PLAYER AND HANDS[1] THE DEALER
-// **********************************************************
-
 const Deck = require("./src/classes/deck");
 const Hand = require("./src/classes/hand");
 const { getPlayAgain, getHitOrStand } = require("./src/inquirer-questions");
 const { BLACKJACK, FINAL_HANDS, LOGO, PLAYERS } = require("./src/constants");
 
+// **********************************************************
+// HANDS ARE CREATED FROM THE PLAYER NAMES ARRAY IN THE CONSTANTS
+// FILE, MAKING HANDS[0] THE PLAYER AND HANDS[1] THE DEALER
+// **********************************************************
 const hands = [];
 
 let dealerWins = 0;
