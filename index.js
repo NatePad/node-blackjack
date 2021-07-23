@@ -7,7 +7,7 @@
 
 const Deck = require("./src/classes/deck");
 const Hand = require("./src/classes/hand");
-const { getPlayAgain, getHitOrStand } = require("./src/inquirerQuestions");
+const { getPlayAgain, getHitOrStand } = require("./src/inquirer-questions");
 const { BLACKJACK, FINAL_HANDS, LOGO, PLAYERS } = require("./src/constants");
 
 const hands = [];
