@@ -2,7 +2,7 @@
 
 This is a Node CLI application that lets you play Blackjack! It uses concepts that we've covered so far in the Coding Bootcamp except for the [for of loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of), which is my favorite way to iterate through an array.
 
-The live application is hosted by REplit at [https://replit.com/@NatePad/node-blackjack](https://replit.com/@NatePad/node-blackjack).
+The live application is hosted by Replit at [https://replit.com/@NatePad/node-blackjack](https://replit.com/@NatePad/node-blackjack).
 
 ## Installation and Usage
 
