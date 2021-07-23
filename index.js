@@ -6,8 +6,10 @@ const { getPlayAgain, getHitOrStand } = require("./src/inquirer-questions");
 const { BLACKJACK, FINAL_HANDS, LOGO, PLAYERS } = require("./src/constants");
 
 // **********************************************************
-// HANDS ARE CREATED FROM THE PLAYER NAMES ARRAY IN THE CONSTANTS
-// FILE, MAKING HANDS[0] THE PLAYER AND HANDS[1] THE DEALER
+// Hands are created from the PLAYERS names in the constants
+// file, making hands[PLAYERS.length] the dealer hand.
+// The dealer is last in the array becaujse all players finish their
+// hands before the dealer in casino Blackjack.
 // **********************************************************
 const hands = [];
 
@@ -101,7 +103,7 @@ const init = async () => {
 
     for (const hand of hands) {
       while (hand.getHit()) {
-        if (hand.getPlayer() === PLAYERS[0]) {
+        if (hand.getPlayer() !== PLAYERS[PLAYERS.length - 1]) {
           // START PLAYER HIT/STAY OPERATIONS
           if (await getHitOrStand()) {
             hand.addCards(deck.deal(1));
