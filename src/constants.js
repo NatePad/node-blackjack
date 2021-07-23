@@ -5,7 +5,7 @@ module.exports = {
   FACES: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
   PLAYERS: ["Player", "Dealer"],
   BLACKJACK: 21,
-  RESUFFLE_AT: 20,
+  RESHUFFLE_AT: 20,
 
   LOGO: `
 .------.            _     _            _    _            _    

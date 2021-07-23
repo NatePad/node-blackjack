@@ -8,7 +8,7 @@ const {
   FINAL_HANDS,
   LOGO,
   PLAYERS,
-  RESUFFLE_AT,
+  RESHUFFLE_AT,
 } = require("./src/constants");
 
 // **********************************************************
