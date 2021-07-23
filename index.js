@@ -1,7 +1,7 @@
 "use strict";
 
 // **********************************************************
-// HANDS ARE CREATED BY FROM THE PLAYER NAMES ARRAY IN THE CONSTANTS
+// HANDS ARE CREATED FROM THE PLAYER NAMES ARRAY IN THE CONSTANTS
 // FILE, MAKING HANDS[0] THE PLAYER AND HANDS[1] THE DEALER
 // **********************************************************
 
