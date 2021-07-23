@@ -12,6 +12,11 @@ class Hand {
   }
 
   addCards(cards) {
+    // ADD CARDS IS PASSED AN ARRAY
+    // IF WE DON'T USE THE SPREAD OPERATOR
+    // HERE, WE'LL CREATE A 2D ARRAY
+    // INSTEAD OF ADDING CARDS TO THE
+    // CURRENT ARRAY
     this.cards.push(...cards);
     this.setValue();
   }
@@ -45,27 +50,33 @@ class Hand {
     this.value = value;
   }
 
-  printCards() {
+  printCards(revealDealer) {
     const isPlayerHand = this.player === PLAYERS[0];
+    // IF IT'S THE DEALER'S HAND, WE SET i TO 1
+    // SO THAT WE DON'T SHOW THE DEALER'S FIRST CARD
+    // IN THE FOR LOOP BELOW
     let i = 0;
 
-    console.log("___________________");
+    console.log("_______________________");
     if (isPlayerHand) {
       console.log("Your Cards:");
     } else {
       console.log(`${this.player}'s Cards:`);
-      console.log("1 face down card");
+    }
+
+    if (!revealDealer && !isPlayerHand) {
       i = 1;
+      console.log("1 face down card");
     }
 
     for (i; i < this.cards.length; i++) {
       this.cards[i].printCard();
     }
 
-    if (isPlayerHand) {
-      console.log("Your hand value:", this.value);
+    if (isPlayerHand || revealDealer) {
+      console.log("Hand value is:", this.value);
     }
-    console.log("===================");
+    console.log("=======================");
   }
 }
 
