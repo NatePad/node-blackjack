@@ -25,8 +25,8 @@ class Hand {
     this.hit = bool;
   }
 
-  getValue() {
-    return this.value;
+  getHit() {
+    return this.hit;
   }
 
   setValue() {
@@ -48,6 +48,10 @@ class Hand {
       }
     }
     this.value = value;
+  }
+
+  getValue() {
+    return this.value;
   }
 
   printCards(revealDealer) {

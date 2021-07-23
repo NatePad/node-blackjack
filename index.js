@@ -100,7 +100,7 @@ const init = async () => {
     printHands();
 
     for (const hand of hands) {
-      while (hand.hit) {
+      while (hand.getHit()) {
         if (hand.player === PLAYERS[0]) {
           // START PLAYER HIT/STAY OPERATIONS
           if (await getHitOrStand()) {
