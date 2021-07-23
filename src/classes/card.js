@@ -18,6 +18,10 @@ class Card {
     }
   }
 
+  getValue() {
+    return this.value;
+  }
+
   printCard() {
     console.log(`${this.face} of ${this.suit}s`);
   }

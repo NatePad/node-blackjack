@@ -34,10 +34,10 @@ class Hand {
     let aceCount = 0;
 
     for (const card of this.cards) {
-      if (card.value === 1) {
+      if (card.getValue() === 1) {
         aceCount++;
       } else {
-        value += card.value;
+        value += card.getValue();
       }
     }
 
