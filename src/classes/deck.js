@@ -20,8 +20,7 @@ class Deck {
     for (let i = 0; i < DECK_COUNT; i++) {
       for (const suit of SUITS) {
         for (const face of FACES) {
-          const card = new Card(suit, face);
-          this.cards.push(card);
+          this.cards.push(new Card(suit, face));
         }
       }
     }
