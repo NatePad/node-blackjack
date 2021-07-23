@@ -46,13 +46,13 @@ const getWinner = () => {
   } else {
     if (
       playerScore !== BLACKJACK ||
-      (hands[0].cards.length > 2 && hands[1].cards.length > 2)
+      (hands[0].getCardCount() > 2 && hands[1].getCardCount() > 2)
     ) {
       ties++;
       console.log("It's a tie!");
     } else {
-      if (hands[0].cards.length === 2) {
-        if (hands[1].cards.length === 2) {
+      if (hands[0].getCardCount() === 2) {
+        if (hands[1].getCardCount() === 2) {
           ties++;
           console.log("You both got Blackjack! It's a draw!");
         } else {

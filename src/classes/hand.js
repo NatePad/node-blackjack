@@ -54,6 +54,10 @@ class Hand {
     return this.value;
   }
 
+  getCardCount() {
+    return this.cards.length;
+  }
+
   printCards(revealDealer) {
     const isPlayerHand = this.player === PLAYERS[0];
     // IF IT'S THE DEALER'S HAND, WE SET i TO 1
