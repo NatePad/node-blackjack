@@ -107,7 +107,7 @@ const init = async () => {
 
     for (const hand of hands) {
       while (hand.getHit()) {
-        if (hand.player === PLAYERS[0]) {
+        if (hand.getPlayer() === PLAYERS[0]) {
           // START PLAYER HIT/STAY OPERATIONS
           if (await getHitOrStand()) {
             hand.addCards(deck.deal(1));

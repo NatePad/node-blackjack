@@ -54,6 +54,10 @@ class Hand {
     return this.value;
   }
 
+  getPlayer() {
+    return this.player;
+  }
+
   getCardCount() {
     return this.cards.length;
   }
