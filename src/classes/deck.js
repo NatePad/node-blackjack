@@ -1,7 +1,7 @@
 "use strict";
 
 const Card = require("./card");
-const { SUITS, FACES } = require("../constants");
+const { SUITS, FACES, FRESH_SHUFFLE } = require("../constants");
 
 class Deck {
   constructor() {
@@ -16,6 +16,7 @@ class Deck {
         this.cards.push(card);
       }
     }
+
     this.shuffle();
   }
 
@@ -29,6 +30,7 @@ class Deck {
       this.cards[currentIndex] = this.cards[randomIndex];
       this.cards[randomIndex] = tempCard;
     }
+    console.log(FRESH_SHUFFLE);
   }
 
   deal(count) {
