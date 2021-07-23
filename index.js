@@ -1,9 +1,14 @@
 "use strict";
 
+// **********************************************************
+// HANDS ARE CREATED BY FROM THE PLAYER NAMES ARRAY IN THE CONSTANTS
+// FILE, MAKING HANDS[0] THE PLAYER AND HANDS[1] THE DEALER
+// **********************************************************
+
 const Deck = require("./src/classes/deck");
 const Hand = require("./src/classes/hand");
 const { getPlayAgain, getHitOrStand } = require("./src/inquirerQuestions");
-const { BLACKJACK, LOGO, PLAYERS } = require("./src/constants");
+const { BLACKJACK, FINAL_HANDS, LOGO, PLAYERS } = require("./src/constants");
 
 const hands = [];
 
@@ -57,11 +62,23 @@ const getWinner = () => {
   }
 };
 
-const printHands = () => {
+const printHands = (revealDealerCard) => {
+  if (revealDealerCard) console.log(FINAL_HANDS);
+
   // PRINT THE DEALER'S CARDS FIRST
   for (let i = hands.length - 1; i >= 0; i--) {
-    hands[i].printCards();
+    hands[i].printCards(revealDealerCard);
   }
+};
+
+const printScore = () => {
+  console.log(`
+***********************
+**  Player Wins: ${playerWins}
+**  Dealer Wins: ${dealerWins}
+**  Ties: ${ties}
+***********************
+`);
 };
 
 const init = async () => {
@@ -70,10 +87,12 @@ const init = async () => {
   while (playAgain) {
     console.clear();
     console.log(LOGO);
-    // EMPTY THE HANDS ARRAY
-    // FOR A NEW GAME
+    // EMPTY THE HANDS ARRAY FOR A NEW GAME
     hands.splice(0, hands.length);
-    // HANDS NOW EQUALS [];
+
+    if (deck.cards.length < 20) {
+      deck.build();
+    }
 
     for (const player of PLAYERS) {
       const cards = deck.deal(2);
@@ -86,22 +105,36 @@ const init = async () => {
     for (const hand of hands) {
       while (hand.hit) {
         if (hand.player === PLAYERS[0]) {
-          // PLAYER HIT/STAY OPERATIONS
+          // START PLAYER HIT/STAY OPERATIONS
           if (await getHitOrStand()) {
             hand.addCards(deck.deal(1));
             printHands();
+            if (hand.getValue() > BLACKJACK) {
+              // PLAYER IS BUST
+              hand.setHit(false);
+            }
           } else {
             hand.setHit(false);
           }
+          // END PLAYER HIT/STAY OPERATIONS
         } else {
-          // DEALER HIT/STAY OPERATIONS
-          console.log("dealer stands");
-          hand.setHit(false);
+          // START DEALER HIT/STAY OPERATIONS
+          if (hand.getValue() < 17 && hands[0].getValue() <= BLACKJACK) {
+            console.log("The dealer hits.");
+            hand.addCards(deck.deal(1));
+            hand.printCards();
+          } else {
+            console.log("The dealer stands.");
+            hand.setHit(false);
+          }
+          // END DEALER HIT/STAY OPERATIONS
         }
       }
     }
 
+    printHands(true);
     getWinner();
+    printScore();
 
     playAgain = await getPlayAgain();
   }
