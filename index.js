@@ -3,13 +3,7 @@
 const Deck = require("./src/classes/deck");
 const Hand = require("./src/classes/hand");
 const { getPlayAgain, getHitOrStand } = require("./src/inquirer-questions");
-const {
-  BLACKJACK,
-  FINAL_HANDS,
-  LOGO,
-  PLAYERS,
-  RESHUFFLE_AT,
-} = require("./src/constants");
+const { BLACKJACK, FINAL_HANDS, LOGO, PLAYERS } = require("./src/constants");
 
 // **********************************************************
 // HANDS ARE CREATED FROM THE PLAYER NAMES ARRAY IN THE CONSTANTS
@@ -95,7 +89,7 @@ const init = async () => {
     // EMPTY THE HANDS ARRAY FOR A NEW GAME
     hands.splice(0, hands.length);
 
-    deck.checkLength(RESHUFFLE_AT);
+    deck.checkLength();
 
     for (const player of PLAYERS) {
       const cards = deck.deal(2);

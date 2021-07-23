@@ -1,7 +1,13 @@
 "use strict";
 
 const Card = require("./card");
-const { SUITS, FACES, FRESH_SHUFFLE } = require("../constants");
+const {
+  DECK_COUNT,
+  FACES,
+  FRESH_SHUFFLE,
+  SUITS,
+  RESHUFFLE_AT,
+} = require("../constants");
 
 class Deck {
   constructor() {
@@ -10,10 +16,13 @@ class Deck {
 
   build() {
     this.cards = [];
-    for (const suit of SUITS) {
-      for (const face of FACES) {
-        const card = new Card(suit, face);
-        this.cards.push(card);
+
+    for (let i = 0; i < DECK_COUNT; i++) {
+      for (const suit of SUITS) {
+        for (const face of FACES) {
+          const card = new Card(suit, face);
+          this.cards.push(card);
+        }
       }
     }
 
@@ -33,8 +42,8 @@ class Deck {
     console.log(FRESH_SHUFFLE);
   }
 
-  checkLength(rebuildAt) {
-    if (this.cards.length < rebuildAt) this.build();
+  checkLength() {
+    if (this.cards.length < RESHUFFLE_AT) this.build();
   }
 
   deal(count) {

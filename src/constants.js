@@ -6,6 +6,7 @@ module.exports = {
   PLAYERS: ["Player", "Dealer"],
   BLACKJACK: 21,
   RESHUFFLE_AT: 20,
+  DECK_COUNT: 1,
 
   LOGO: `
 .------.            _     _            _    _            _    
