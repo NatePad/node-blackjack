@@ -1,6 +1,6 @@
 "use strict";
 
-const { PLAYERS } = require("../constants");
+const { PLAYER_NAMES } = require("../game-settings/settings.json");
 
 class Hand {
   constructor(name, cards) {
@@ -12,11 +12,6 @@ class Hand {
   }
 
   addCards(cards) {
-    // ADD CARDS IS PASSED AN ARRAY
-    // IF WE DON'T USE THE SPREAD OPERATOR
-    // HERE, WE'LL CREATE A 2D ARRAY
-    // INSTEAD OF ADDING CARDS TO THE
-    // CURRENT ARRAY
     this.cards.push(...cards);
     this.setValue();
   }
@@ -63,20 +58,17 @@ class Hand {
   }
 
   printCards(revealDealer) {
-    const isPlayerHand = this.player === PLAYERS[0];
+    const isDealerHand = this.player === PLAYER_NAMES[PLAYER_NAMES.length - 1];
 
     console.log("_______________________");
-    if (isPlayerHand) {
+    if (this.player === PLAYER_NAMES[0]) {
       console.log("Your Cards:");
     } else {
       console.log(`${this.player}'s Cards:`);
     }
 
-    // IF IT'S THE DEALER'S HAND, WE SET i TO 1
-    // SO THAT WE DON'T SHOW THE DEALER'S FIRST CARD
-    // IN THE FOR LOOP BELOW
     let i = 0;
-    if (!revealDealer && this.player === PLAYERS[PLAYERS.length - 1]) {
+    if (!revealDealer && isDealerHand) {
       i = 1;
       console.log("1 face down card");
     }
@@ -85,7 +77,7 @@ class Hand {
       this.cards[i].printCard();
     }
 
-    if (isPlayerHand || revealDealer) {
+    if (!isDealerHand || revealDealer) {
       console.log("Hand value is:", this.value);
     }
     console.log("=======================");

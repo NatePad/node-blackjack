@@ -7,7 +7,7 @@ class Card {
 
     // CONVERT THE FACE FROM
     // A STRING TO A NUMBER
-    const faceInt = parseInt(face);
+    const faceInt = Number(face);
 
     if (face === "A") {
       this.value = 1;
