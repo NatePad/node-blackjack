@@ -2,16 +2,22 @@
 
 const Deck = require("./src/classes/deck");
 const Hand = require("./src/classes/hand");
-const { getPlayAgain, getHitOrStand } = require("./src/inquirer-questions");
-const { BLACKJACK, FINAL_HANDS, LOGO, PLAYERS } = require("./src/constants");
+const getSettings = require("./src/game-settings");
+const {
+  getHitOrStand,
+  getPlayAgain,
+  outOfCardsNotification,
+} = require("./src/inquirer-questions");
+const { FINAL_HANDS, LOGO } = require("./src/art");
+const { OUT_OF_CARDS } = require("./src/errors");
 
 // **********************************************************
-// Hands are created from the PLAYERS names in the constants
-// file, making hands[PLAYERS.length] the dealer hand.
+// The dealer goes last, so hands[PLAYERS.length - 1] is the dealer.
 // The dealer is last in the array because all players finish their
 // hands before the dealer in casino Blackjack.
 // **********************************************************
 const hands = [];
+const BLACKJACK = 21;
 
 let dealerWins = 0;
 let playerWins = 0;
@@ -83,7 +89,9 @@ const printScore = () => {
 };
 
 const init = async () => {
-  const deck = new Deck();
+  const { DECK_COUNT, RESHUFFLE_AT, PLAYER_NAMES } = await getSettings();
+
+  const deck = new Deck(DECK_COUNT, RESHUFFLE_AT);
 
   while (playAgain) {
     console.clear();
@@ -91,50 +99,60 @@ const init = async () => {
     // EMPTY THE HANDS ARRAY FOR A NEW GAME
     hands.splice(0, hands.length);
 
-    deck.checkLength();
+    await deck.checkLength(PLAYER_NAMES.length);
 
-    for (const player of PLAYERS) {
-      const cards = deck.deal(2);
-      const hand = new Hand(player, cards);
-      hands.push(hand);
-    }
+    try {
+      for (const player of PLAYER_NAMES) {
+        const cards = deck.deal(2);
+        const hand = new Hand(player, cards);
+        hands.push(hand);
+      }
 
-    printHands();
+      printHands();
 
-    for (const hand of hands) {
-      while (hand.getHit()) {
-        if (hand.getPlayer() !== PLAYERS[PLAYERS.length - 1]) {
-          // START PLAYER HIT/STAY OPERATIONS
-          if (await getHitOrStand()) {
-            hand.addCards(deck.deal(1));
-            printHands();
-            if (hand.getValue() > BLACKJACK) {
-              // PLAYER IS BUST
-              hand.setHit(false);
+      for (const hand of hands) {
+        let hit = true;
+        while (hit) {
+          if (hand.getPlayer() !== PLAYER_NAMES[PLAYER_NAMES.length - 1]) {
+            // START PLAYER HIT/STAY OPERATIONS
+            if (await getHitOrStand()) {
+              hand.addCards(deck.deal(1));
+              printHands();
+              if (hand.getValue() > BLACKJACK) {
+                // PLAYER IS BUST
+                hit = false;
+              }
+            } else {
+              hit = false;
             }
+            // END PLAYER HIT/STAY OPERATIONS
           } else {
-            hand.setHit(false);
+            // START DEALER HIT/STAY OPERATIONS
+            if (hand.getValue() < 17 && hands[0].getValue() <= BLACKJACK) {
+              console.log("The dealer hits.");
+              hand.addCards(deck.deal(1));
+              hand.printCards(true);
+            } else {
+              console.log("The dealer stands.");
+              hit = false;
+            }
+            // END DEALER HIT/STAY OPERATIONS
           }
-          // END PLAYER HIT/STAY OPERATIONS
-        } else {
-          // START DEALER HIT/STAY OPERATIONS
-          if (hand.getValue() < 17 && hands[0].getValue() <= BLACKJACK) {
-            console.log("The dealer hits.");
-            hand.addCards(deck.deal(1));
-            hand.printCards(true);
-          } else {
-            console.log("The dealer stands.");
-            hand.setHit(false);
-          }
-          // END DEALER HIT/STAY OPERATIONS
         }
       }
+
+      printHands(true);
+      getWinner();
+      printScore();
+    } catch (err) {
+      switch (err.message) {
+        case OUT_OF_CARDS:
+          await outOfCardsNotification();
+          break;
+        default:
+          console.error("UNKNOWN ERROR:", err);
+      }
     }
-
-    printHands(true);
-    getWinner();
-    printScore();
-
     playAgain = await getPlayAgain();
   }
 };

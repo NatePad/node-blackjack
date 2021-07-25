@@ -1,13 +1,6 @@
 "use strict";
 
 module.exports = {
-  SUITS: ["♠", "♥", "♦", "♣"],
-  FACES: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
-  PLAYERS: ["Player", "Dealer"],
-  BLACKJACK: 21,
-  RESHUFFLE_AT: 20,
-  DECK_COUNT: 1,
-
   LOGO: `
 .------.            _     _            _    _            _    
 |A_  _ |.          | |   | |          | |  (_)          | |   

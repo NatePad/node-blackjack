@@ -1,0 +1,5 @@
+{
+  "DECK_COUNT": 1,
+  "RESHUFFLE_AT": 20,
+  "PLAYER_NAMES": ["Player", "Dealer"]
+}
